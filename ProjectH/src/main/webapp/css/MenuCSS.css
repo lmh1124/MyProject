@@ -1,0 +1,359 @@
+
+	body{
+		width:1920px;
+	}
+
+	div#menuA{
+		position: relative;
+		display: block;
+		width: 100%;
+		height: 700px;
+		padding: 20px;
+		overflow: hidden;
+		margin-left: 150px;
+		margin-top: 25px;
+		background-image:url(http://localhost:9000/projectH/image/chalkboard2.jpg);
+		background-repeat: no-repeat;
+	}
+	div.menuA_blind{
+		height: 500px;
+		width:110%;
+		overflow-y:scroll;
+	}
+	ul#menuList{
+		background: #6d4412;
+		display: block;
+		list-style-type: none;
+		position: absolute;
+		top: 31%;
+		left : 10%;
+		padding: 10px;
+		text-align: center;
+		text-transform: uppercase;
+		border-radius: 10px;
+	}
+	ul#menuList li{
+		width: 160px;
+	}
+	ul#menuList li:first-child {
+		margin-bottom: 20px;
+		background: black;
+		color: white;
+		padding: 10px;
+		letter-spacing: 4px;
+		border-radius: 15px;
+	}
+	ul#menuList li:first-child, ul#menuList li:first-child label{
+		cursor: default;
+	}
+	ul#menuList li:first-child label{
+		font-weight: bold;
+		font-size: 20px;
+	}
+	ul#menuList li:not(:nth-child(1)){
+		display: block;	
+	}
+	ul#menuList li:not(:nth-child(1)) a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		font-size: 17px;
+		padding: 7px 10px;
+		background: #c68c53;
+	}
+	ul#menuList li:not(:nth-child(1)):nth-child(2) a{
+		border-radius: 15px 15px 0 0;
+	}
+	ul#menuList li:not(:nth-child(1)):last-child a{
+		border-radius: 0 0 15px 15px;
+	}
+	ul#menuList li:not(:nth-child(1)) a:hover{
+		background: #996633;
+	}
+	ul#menuList li:not(:nth-child(1)) a.selected{
+		background: #996633;
+		padding: 7px 10px;
+	}
+	ul#menuList_main{
+		position: absolute;
+		display: block;
+		margin-left: 10px;
+		height: 500px;
+	}
+	
+	li.listM{
+		display: inline-block;
+		position: absolute;
+		list-style-type: none;
+		margin: 0;
+		text-align: center;
+		width: 220px;
+		height: 200px;
+		-webkit-transition: all 450ms ease-out 0s;	
+	   -moz-transition: all 450ms ease-out 0s;
+		 -o-transition: all 450ms ease-out 0s;
+		    transition: all 450ms ease-out 0s;
+	}
+	li.listM input[type=number]{
+		width: 50px;
+	}
+	li #detailM{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		display: block;
+		opacity: 0;
+		margin: 0;
+		padding: 0;
+
+		transform: rotateY(180deg) scale(0.5, 0.5);
+		-webkit-transform: rotateY(180deg) scale(0.5, 0.5);
+		-webkit-transition: all 450ms ease-out 0s;	
+	   -moz-transition: all 450ms ease-out 0s;
+		 -o-transition: all 450ms ease-out 0s;
+		    transition: all 450ms ease-out 0s;
+	}
+	li:hover #detailM{
+		 -webkit-transform: rotateY( 0deg ) scale(1,1);
+         -moz-transform: rotateY( 0deg ) scale(1,1);
+         -o-transform: rotateY( 0deg ) scale(1,1);
+         transform: rotateY( 0deg ) scale(1,1);
+         opacity : 1;
+	}
+	li #detailM span.overImg{
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		display: block;
+		opacity : 0.6;
+		width : 100%;
+		height: 100%;
+		background-color: black;
+	}
+	li #detailM span.orderTab{
+		position: absolute;
+		top:25%;
+		left:0;
+		z-index: 1;
+		opacity : 1;
+		text-align: center;
+		width: 220px;
+		height: 200px;
+	}
+	li #detailM span label{
+		color: white;
+		font-size: 30px;
+	}
+	#menuList_main li img{
+		width: 100%;
+		height: 100%;
+	}
+	ul#menuList_main li.item-hidden{
+		transform: scale3d(0,0,0);
+	}
+	div.basketform{
+		position: absolute;
+		left: 10%;
+		top: 57%;
+		margin:0;
+		margin-left: 25px;
+		background: #6d4412;
+		display: block;
+		padding: 10px;
+		text-align: center;
+		text-transform: uppercase;
+		border-radius: 10px;
+		border-bottom-left-radius: 15% 20%;
+		border-bottom-right-radius: 15% 20%;
+	}
+	div.basketform label.basktitle{
+		margin-bottom: 15px;
+		background: black;
+		color: white;
+		padding: 10px;
+		letter-spacing: 4px;
+		border-radius: 15px;
+		width: 160px;
+		cursor: default;
+		text-align: center;
+		font-weight: bold;
+		font-size: 17px;
+	}
+	div.basketform div.scrollBlind{
+		width: 189px;
+		height: 100%;
+		overflow-y: scroll;
+	}
+	div.basketform .scrollView{
+		width: 170px;
+		height: 200px;
+		overflow: hidden;
+		background: #c68c53;
+	}
+	div.basketform ul{
+		display: block;
+		margin : 0;
+		padding: 0;
+		list-style-type: none;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	div.baskIn {
+		border-top-left-radius: 10% 35px;
+		border-top-right-radius: 10% 35px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		padding-bottom: 10px;
+		text-align: left;
+		width:170px;
+		background: #392613;
+		margin: 0;
+		padding: 5px;
+	}
+	div.basketform label.baskn{
+		display: inline-block;
+		border: none;
+		color: white;
+		text-align: center;
+		cursor: default;
+	}
+	div.basketform label.baskn:first-child{
+		width: 15%;
+	}
+	div.basketform label.baskn:nth-child(2){
+		width: 35%;
+	}
+	div.basketform label.baskn:nth-child(3){
+		width: 20%;
+	}
+	div.basketform label.baskn:nth-child(4){
+		width: 30%;
+	}
+	div.basketform li input[type=text]{
+		cursor: default;
+		border: none;
+		background: #ffbf80;
+		border-radius: 0;
+		margin: 0;
+		padding:0;
+		text-align: center;
+	}
+	div.basketform span.basktot label{
+		display: inline;
+		width:50px;
+		margin: 0;
+	}
+	div.basketform span.basktot label.tottitle{
+		margin: 0;
+		padding:5px;
+		margin-left: 10px;
+		margin-right:10px;
+		font-size: 17px;
+		cursor: default;
+		color: white;
+	}
+	div.basketform input[type=text]:first-child{
+		width: 15%;
+	}
+	div.basketform input[type=text]:nth-child(2){
+		width: 35%;
+	}
+	div.basketform input[type=text]:nth-child(3){
+		width: 20%;
+	}
+	div.basketform input[type=text]:nth-child(4){
+		width: 30%;
+	}
+	div.basketform span.basktot label input#totCost{
+		margin: 0;
+		width: 50%;
+		cursor: default;
+		text-align: right;
+		padding: 1px 5px 1px 5px;
+		border: none;
+		border-bottom: 2px inset #1a0d00;
+		border-top-left-radius: 100% 100%; 
+		font-weight: bold;
+	}
+	div.basketform button{
+		border-radius: 100%;
+		padding: 3px;
+		margin: 5px 5px;
+		font-weight: bold;
+	}
+	div.basketform #orderBask{
+		margin-left: 50px;
+	}
+	ul#baskList li{
+		border-radius:5px;
+	}
+	.basketform span.basktot{
+		margin: 0;
+		padding: 0;
+		padding-top: 10px;
+		cursor: default;
+	}
+	#menuA input[type=number]{
+		width: 45px;
+		text-align: center;
+		font-size: 13px;
+		padding: 3px;
+		margin: 0;
+	}
+		ul#basketList li.sel{
+		background: #ff8080;
+	}
+	/* heart */
+.heart {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 20px;
+	height: 20px;
+	opacity: 0.3;
+}
+span.overImg .pick{
+	opacity: 1;
+}
+.heart div{
+	width: 10px;
+	height: 17px;
+	background: red;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+    top: 0;
+    border: none;
+    
+}
+#d2{
+    left: 10px;    
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 100% 100% 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+     transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+#d1{
+    left: 0;
+     -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin :100% 100%;
+}

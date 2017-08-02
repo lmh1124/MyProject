@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.OrderDAO">
+	
+	<select id="orderTable" resultType="com.spring.vo.OrderVO">
+		select rownum as rno, order_no, order_name, order_count, order_cost 
+		from orderTable
+		where guest_id = #{guest_id}
+	</select>
+	
+	<insert id="orderInsert">
+		insert into orderTable values(#{guest_id}, #{guest_addr}, #{guest_phone}, #{order_no}, #{order_name}, #{order_count}, #{order_cost}, sysdate)
+	</insert>
+	<select id="orderList" resultType="com.spring.vo.OrderVO">
+		select * from
+		(select distinct (to_char(M.order_date, 'yyyy-mm-dd hh24:mi:ss')) as odate, 
+		(select count(S.order_name) from orderTable S where M.order_date = S.order_date)as ocount,
+		(select O.order_name from orderTable O where M.order_date = O.order_date and rownum = 1) as oname
+		from orderTable M where M.guest_id=#{guest_id}) order by odate desc
+	</select>
+	
+	<select id="orderDetail" resultType="com.spring.vo.OrderVO">
+		select guest_addr, guest_phone,order_name, order_count, order_cost from orderTable 
+		where guest_id=#{guest_id} and to_char(order_date, 'yyyy-mm-dd hh24:mi:ss') = #{odate}
+	
+	</select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.MenuDAO">
+<!--		Berger Insert-->
+	<insert id="menuInsert_B">
+		insert into berger values( berger_seq.nextval, #{mname}, #{mcost}, #{pfname})
+	</insert>
+<!-- 	Drink Insert -->
+	<insert id="menuInsert_D">
+		insert into drink values( drink_seq.nextval, #{mname}, #{mcost},#{pfname})
+	</insert>
+<!-- 	Side Insert -->
+	<insert id="menuInsert_S">
+		insert into side values( side_seq.nextval, #{mname}, #{mcost},#{pfname})
+	</insert>
+	
+	<select id="menuList_B"  resultType="com.spring.vo.MenuVO">
+		select rownum as rno, mno, mname, mcost, pfname from(select bno as mno, bname as mname, bcost as mcost, bfname as pfname from berger order by mno asc)
+	</select>
+	
+	<select id="menuList_D" resultType="com.spring.vo.MenuVO">
+		select rownum as rno, mno, mname, mcost, pfname from(select dno as mno, dname as mname, dcost as mcost, dfname as pfname from drink order by mno asc)
+	</select>
+	
+	<select id="menuList_S" resultType="com.spring.vo.MenuVO">
+		select rownum as rno, mno, mname, mcost, pfname from(select sno as mno, sname as mname, scost as mcost, sfname as pfname from side order by mno asc)
+	</select>
+	
+	<select id="execContent" resultType="com.spring.vo.FoodInfVO">
+		select food_kcal, food_gram, food_protein, food_salt, food_sugar,
+		food_fat,food_command from foodInfo where food_num=#{fno}
+	</select>
+</mapper>

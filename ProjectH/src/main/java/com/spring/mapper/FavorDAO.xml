@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.FavorDAO">
+	<select id="selectFavorB" resultType="com.spring.vo.FavorVO">
+		select * from guest_favor where order_no = 1 and guest_id = #{guest_id}
+	</select>
+	
+	<select id="selectFavorD" resultType="com.spring.vo.FavorVO">
+		select * from guest_favor where order_no = 2 and guest_id = #{guest_id}
+	</select>
+	
+	<select id="selectFavorS" resultType="com.spring.vo.FavorVO">
+		select * from guest_favor where order_no = 3 and guest_id = #{guest_id}
+	</select>
+	
+	<insert id="insertFavor">
+		insert into guest_favor values(#{guest_id}, #{order_no}, #{order_name}, #{order_cost}, #{fname})
+	</insert>
+	
+	<delete id="deleteFavor">
+		delete from guest_favor where guest_id = #{guest_id} and order_name=#{order_name}
+	</delete>
+</mapper>

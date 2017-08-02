@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.BoardDAO">
+	<select id="execPageCount" resultType="int">
+		select count(*) from projecth_board
+	</select>	
+
+	<select id="execSelect" resultType="com.spring.vo.BoardVO">
+		select * from
+			(select * from (select rownum as rno, no, title, bname, to_char(bdate,'yyyy-mm-dd') bdate, hits 
+						from (select no, title, bname, bdate, hits 
+						  from projecth_board order by bdate desc)))
+			where rno between #{rowStart} and #{rowEnd}						  
+	</select>
+	
+	<select id="execContent" resultType="com.spring.vo.BoardVO">
+		select rownum as rno, no, title, content, bname, bdate, hits 
+			from projecth_board where no=#{no}
+	</select>
+	
+	<update id="execHitsUpdate">
+		update projecth_board set hits=hits+1 where no=#{no}
+	</update>
+	
+	<insert id="execInsert">
+		insert into projecth_board values
+			(sequ_projecth_board.nextval, #{title}, #{content}, #{bname}, sysdate, 0)
+	</insert>
+	
+	<insert id="execReplyInsert" parameterType="com.spring.vo.BoardReplyVO">
+		<selectKey resultType="String" keyProperty="reno" order="BEFORE">
+			select nvl(max(reno),0)+1 from board_reply
+		</selectKey>
+		
+		insert into board_reply (no, reno, rewriter, redeleteflag, rememo, redate)
+		values (#{no}, #{reno}, #{rewriter}, 'N', #{rememo}, sysdate)
+	</insert>	
+	
+	<delete id="execDelete">
+		delete from projecth_board where no=#{no}
+	</delete>
+
+	<update id="execUpdate">
+		update projecth_board set title=#{title}, content=#{content} where no=#{no}
+	</update>
+	
+	<update id="execReplyUpdate" parameterType="com.spring.vo.BoardReplyVO">
+		update board_reply set rememo=#{rememo}
+			where reno=#{reno}
+	</update>
+
+	<delete id="execReplyDelete" parameterType="com.spring.vo.BoardReplyVO">
+		delete from board_reply where reno=#{reno}
+	</delete>
+	
+	<select id="execSelectReply" resultType="com.spring.vo.BoardReplyVO">
+		select * from board_reply where no=#{no} order by redate desc
+	</select>
+</mapper>

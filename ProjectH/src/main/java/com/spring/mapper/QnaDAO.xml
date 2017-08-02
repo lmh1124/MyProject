@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.dao.QnaDAO">
+	<select id="execSelect" resultType="com.spring.vo.QnaVO">
+		select rownum as rno, no, title, qname,
+						to_char(qdate,'yyyy-mm-dd') qdate, hits from 
+						(select no, title, qname, qdate, hits 
+						from projecth_qna order by qdate desc)	
+	</select>
+	
+	<select id="execContent" resultType="com.spring.vo.QnaVO">
+		select rownum as rno, no, title, content, qname, 
+			to_char(qdate,'yyyy-mm-dd') as qdate, hits 
+			from projecth_qna where no=#{no}
+	</select>
+	
+	<update id="execHitsUpdate">
+		update projecth_qna set hits=hits+1 where no=#{no}
+	</update>
+	
+	<insert id="execInsert">
+		insert into projecth_qna values
+			(sequ_projecth_qna.nextval, #{title}, #{content}, #{qname}, sysdate, 0)
+	</insert>
+	
+	<delete id="execDelete">
+		delete from projecth_qna where no=#{no}
+	</delete>
+
+	<update id="execUpdate">
+		update projecth_qna set title=#{title}, content=#{content} where no=#{no}
+	</update>
+</mapper>
